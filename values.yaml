@@ -35,8 +35,8 @@ expose:
       notarySecretName: ""
   ingress:
     hosts:
-      core: core.harbor.domain
-      notary: notary.harbor.domain
+      core: core.harbor1
+      notary: notary.harbor1
     # set to the type of ingress controller if it has specific requirements.
     # leave as `default` for most ingress controllers.
     # set to `gce` if using the GCE ingress controller
@@ -111,7 +111,7 @@ expose:
 # the IP address of k8s node
 #
 # If Harbor is deployed behind the proxy, set it as the URL of proxy
-externalURL: https://core.harbor.domain
+externalURL: https://core.harbor1
 
 # The internal TLS used for harbor components secure communicating. In order to enable https
 # in each components tls cert files need to provided in advance.
@@ -333,7 +333,7 @@ updateStrategy:
   type: RollingUpdate
 
 # debug, info, warning, error or fatal
-logLevel: info
+logLevel: debug
 
 # The initial password of Harbor admin. Change it from portal after launching Harbor
 harborAdminPassword: "Harbor12345"
@@ -372,7 +372,7 @@ proxy:
 nginx:
   image:
     repository: goharbor/nginx-photon
-    tag: dev
+    tag: v2.2.1
   # set the service account to be used, default if left empty
   serviceAccountName: ""
   replicas: 1
@@ -389,7 +389,7 @@ nginx:
 portal:
   image:
     repository: goharbor/harbor-portal
-    tag: dev
+    tag: v2.2.1
   # set the service account to be used, default if left empty
   serviceAccountName: ""
   replicas: 1
@@ -406,7 +406,7 @@ portal:
 core:
   image:
     repository: goharbor/harbor-core
-    tag: dev
+    tag: v2.2.1
   # set the service account to be used, default if left empty
   serviceAccountName: ""
   replicas: 1
@@ -440,7 +440,7 @@ core:
 jobservice:
   image:
     repository: goharbor/harbor-jobservice
-    tag: dev
+    tag: v2.2.1
   replicas: 1
   # set the service account to be used, default if left empty
   serviceAccountName: ""
@@ -471,7 +471,7 @@ registry:
   registry:
     image:
       repository: goharbor/registry-photon
-      tag: dev
+      tag: v2.2.1
     # resources:
     #  requests:
     #    memory: 256Mi
@@ -479,7 +479,7 @@ registry:
   controller:
     image:
       repository: goharbor/harbor-registryctl
-      tag: dev
+      tag: v2.2.1
 
     # resources:
     #  requests:
@@ -526,7 +526,7 @@ chartmuseum:
   absoluteUrl: false
   image:
     repository: goharbor/chartmuseum-photon
-    tag: dev
+    tag: v2.2.1
   replicas: 1
   # resources:
   #  requests:
@@ -545,7 +545,7 @@ trivy:
     # repository the repository for Trivy adapter image
     repository: goharbor/trivy-adapter-photon
     # tag the tag for Trivy adapter image
-    tag: dev
+    tag: v2.2.1
   # set the service account to be used, default if left empty
   serviceAccountName: ""
   # replicas the number of Pod replicas
@@ -602,7 +602,7 @@ notary:
     serviceAccountName: ""
     image:
       repository: goharbor/notary-server-photon
-      tag: dev
+      tag: v2.2.1
     replicas: 1
     # resources:
     #  requests:
@@ -618,7 +618,7 @@ notary:
     serviceAccountName: ""
     image:
       repository: goharbor/notary-signer-photon
-      tag: dev
+      tag: v2.2.1
     replicas: 1
     # resources:
     #  requests:
@@ -646,7 +646,7 @@ database:
     serviceAccountName: ""
     image:
       repository: goharbor/harbor-db
-      tag: dev
+      tag: v2.2.1
     # The initial superuser password for internal database
     password: "changeit"
     # resources:
@@ -702,7 +702,7 @@ redis:
     serviceAccountName: ""
     image:
       repository: goharbor/redis-photon
-      tag: dev
+      tag: v2.2.1
     # resources:
     #  requests:
     #    memory: 256Mi
@@ -738,7 +738,7 @@ exporter:
     serviceAccountName: ""
     image:
       repository: goharbor/harbor-exporter
-      tag: dev
+      tag: v2.2.1
     nodeSelector: {}
     tolerations: []
     affinity: {}
