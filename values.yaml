@@ -466,6 +466,14 @@ jobservice:
   secret: ""
 
 registry:
+  notifications:
+    endpoints:
+      - name: kraken
+        disabled: false
+        url: http://kraken-proxy.kraken.svc.cluster.local:10050/registry/notifications
+        timeout: 3000ms
+        threshold: 5
+        backoff: 1s
   # set the service account to be used, default if left empty
   serviceAccountName: ""
   registry:

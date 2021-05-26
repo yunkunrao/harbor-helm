@@ -7,6 +7,10 @@ metadata:
 data:
   config.yml: |+
     version: 0.1
+{{- if .Values.registry.notifications }}
+    notifications:
+{{ toYaml .Values.registry.notifications | indent 6 }}
+{{- end }}
     log:
       {{- if eq .Values.logLevel "warning" }}
       level: warn
