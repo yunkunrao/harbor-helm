@@ -245,7 +245,7 @@ persistence:
     # Refer to
     # https://github.com/docker/distribution/blob/master/docs/configuration.md#redirect
     # for the detail.
-    disableredirect: false
+    disableredirect: true
     # Specify the "caBundleSecretName" if the storage service uses a self-signed certificate.
     # The secret must contain keys named "ca.crt" which will be injected into the trust store
     # of registry's and chartmuseum's containers.
@@ -255,7 +255,7 @@ persistence:
     # "oss" and fill the information needed in the corresponding section. The type
     # must be "filesystem" if you want to use persistent volumes for registry
     # and chartmuseum
-    type: filesystem
+    type: s3
     filesystem:
       rootdirectory: /storage
       #maxthreads: 100
@@ -271,18 +271,18 @@ persistence:
       #rootdirectory: /gcs/object/name/prefix
       #chunksize: "5242880"
     s3:
-      region: us-west-1
-      bucket: bucketname
-      #accesskey: awsaccesskey
-      #secretkey: awssecretkey
-      #regionendpoint: http://myobjects.local
-      #encrypt: false
+      region: demo-region
+      bucket: demo-bucket
+      accesskey: AKIAIOSFODNN7EXAMPLE
+      secretkey: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+      regionendpoint: http://192.168.0.2:9000
+      encrypt: false
       #keyid: mykeyid
-      #secure: true
+      secure: false
       #skipverify: false
       #v4auth: true
       #chunksize: "5242880"
-      #rootdirectory: /s3/object/name/prefix
+      rootdirectory: /kraken/default/
       #storageclass: STANDARD
       #multipartcopychunksize: "33554432"
       #multipartcopymaxconcurrency: 100
